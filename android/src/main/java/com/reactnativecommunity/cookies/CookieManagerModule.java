@@ -227,12 +227,6 @@ public class CookieManagerModule extends ReactContextBaseJavaModule {
             cookieBuilder.setSecure(true);
         }
 
-        if (HTTP_ONLY_SUPPORTED) {
-            if (cookie.hasKey("httpOnly") && cookie.getBoolean("httpOnly")) {
-                cookieBuilder.setHttpOnly(false);
-            }
-        }
-
         return cookieBuilder;
     }
 
@@ -243,9 +237,6 @@ public class CookieManagerModule extends ReactContextBaseJavaModule {
         cookieMap.putString("domain", cookie.getDomain());
         cookieMap.putString("path", cookie.getPath());
         cookieMap.putBoolean("secure", cookie.getSecure());
-        if (HTTP_ONLY_SUPPORTED) {
-            cookieMap.putBoolean("httpOnly", cookie.isHttpOnly());
-        }
 
         // if persistent the max Age will be -1
         long expires = cookie.getMaxAge();
